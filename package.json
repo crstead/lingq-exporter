@@ -1,0 +1,27 @@
+{
+  "name": "lingq-sentence-exporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devgeist/lingq-sentence-exporter.git"
+  },
+  "keywords": [
+    "lingq",
+    "anki"
+  ],
+  "author": "Christopher Button",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devgeist/lingq-sentence-exporter/issues"
+  },
+  "homepage": "https://github.com/devgeist/lingq-sentence-exporter#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "request": "^2.88.2"
+  }
+}
