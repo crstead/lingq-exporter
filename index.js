@@ -1,34 +1,15 @@
-const https = require("https");
+const api = require("./api");
+const util = require("./util");
 
-const getLessonText = () => {
-    const options = {
-        hostname: 'www.lingq.com',
-        port: 443,
-        path: '/api/languages/ko/lessons/396053/text/',
-        headers: {'Authorization': 'Token ***REMOVED***'}
-    };
+api.getLessonText().then(lessonText => {
+    lessonText = util.unicodeToChar(lessonText);
+    lessonText = JSON.parse(lessonText);
+    lessonText = util.cleanText(lessonText.text);
 
-    return new Promise((resolve, reject) => {
-        https.get(options, (response) => {
-            let lessonText = '';
-            response.on('data', function (data) {
-                lessonText += data.toString();
-            });
-            response.on('end', function() {
-                resolve(lessonText);
-            });
-        }).on('error', (error) => {
-            reject(error);
-        });
-    });
-}
+    console.log(lessonText);
 
-const unicodeToChar = (text) => {
-    return text.replace(/\\u[\dA-F]{4}/gi, (match) => {
-            return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
-        });
-}
-
-getLessonText().then(lessonText => {
-    console.log(unicodeToChar(lessonText));
 }).catch(error => {console.log(error)});
+
+// api.getLessonLingQs().then(lessonLingQs => {
+//     console.log(util.unicodeToChar(lessonLingQs));
+// }).catch(error => {console.log(error)});
