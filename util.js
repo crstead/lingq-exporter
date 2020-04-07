@@ -5,7 +5,7 @@ const unicodeToChar = (text) => {
 }
 
 const cleanText = (text) => {
-    return text.replace(/<\/?[^>]+(>|$)/g, '').replace(/\r?\n|\r/g, ' ');
+    return text.replace(/<\/?[^>]+(>|$)/g, '').replace(/\r?\n|\r/g, ' ').replace(/\s{2,}/g, ' ').trim();
 }
 
 exports.unicodeToChar = unicodeToChar;

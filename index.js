@@ -6,7 +6,13 @@ api.getLessonText().then(lessonText => {
     lessonText = JSON.parse(lessonText);
     lessonText = util.cleanText(lessonText.text);
 
-    console.log(lessonText);
+    lessonTextArray = lessonText.split('. ');
+
+    for (sentence of lessonTextArray) {
+        sentence += ".";
+        console.log(sentence);
+    }
+
 
 }).catch(error => {console.log(error)});
 
