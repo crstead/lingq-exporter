@@ -1,21 +1,22 @@
-const api = require("./api");
-const util = require("./util");
+const controller = require("./controller");
 
-api.getLessonText().then(lessonText => {
-    lessonText = util.unicodeToChar(lessonText);
-    lessonText = JSON.parse(lessonText);
-    lessonText = util.cleanText(lessonText.text);
+const myArgs = process.argv;
 
-    lessonTextArray = lessonText.split('. ');
+console.log(myArgs);
 
-    for (sentence of lessonTextArray) {
-        sentence += ".";
-        console.log(sentence);
-    }
+let lessonText, lessonVocabulary;
 
-
-}).catch(error => {console.log(error)});
-
-// api.getLessonLingQs().then(lessonLingQs => {
-//     console.log(util.unicodeToChar(lessonLingQs));
-// }).catch(error => {console.log(error)});
+if (myArgs[2] === "1") {
+    lessonText = controller.getLessonText.then(result => {
+        for (sentence of result) {
+            sentence = sentence.trimStart();
+            sentence += ".";
+        }
+    });
+} else if (myArgs[2] === "2") {
+    lessonVocabulary = controller.getLessonVocabulary.then(result => {
+        for (let item of result) {
+            //console.log(item);
+        }
+    });
+}
