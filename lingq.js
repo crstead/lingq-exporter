@@ -16,12 +16,12 @@ let options = {
     headers: {'Authorization': token}
 };
 
-const getLessonText = () => {
+const getText = () => {
     options.path = '/api/languages/' + language + '/lessons/' + contentId + '/text/';
     return getPromise(options);
 };
 
-const getLessonVocabulary = () => {
+const getVocabulary = () => {
     options.path = '/api/languages/' + language + '/lessons/' + contentId + '/lingqs/';
     return getPromise(options);
 };
@@ -29,12 +29,12 @@ const getLessonVocabulary = () => {
 const getPromise = (options) => {
     return new Promise((resolve, reject) => {
         https.get(options, (response) => {
-            let lessonText = '';
+            let text = '';
             response.on('data', function (data) {
-                lessonText += data.toString();
+                text += data.toString();
             });
             response.on('end', function() {
-                resolve(lessonText);
+                resolve(text);
             });
         }).on('error', (error) => {
             reject(error);
@@ -42,5 +42,5 @@ const getPromise = (options) => {
     });
 }
 
-exports.getLessonText = getLessonText;
-exports.getLessonVocabulary = getLessonVocabulary;
+exports.getText = getText;
+exports.getVocabulary = getVocabulary;
