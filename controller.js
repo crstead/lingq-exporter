@@ -1,12 +1,8 @@
 const lingq = require("./lingq");
 const util = require("./util");
 
-let getLessonText, getLessonVocabulary;
-
-const myArgs = process.argv;
-
-if (myArgs[2] === "1") {
-    getLessonText = lingq.getLessonText().then(result => {
+const getLessonText = () => {
+    return lingq.getLessonText().then(result => {
         result = util.convertUnicodeToChar(result);
         result = JSON.parse(result);
         result = util.formatText(result.text);
@@ -16,10 +12,19 @@ if (myArgs[2] === "1") {
         if (lessonText[lessonText.length - 1] === "") {
             lessonText.pop(lessonText.length - 1)
         }
+
+        lessonText = lessonText.map(sentence => {
+            sentence = sentence.trimStart();
+            sentence += ".";
+            return sentence;
+        })
+
         return lessonText;
     }).catch(error => { console.log(error) });
-} else if (myArgs[2] === "2") {
-    getLessonVocabulary = lingq.getLessonVocabulary().then(result => {
+}
+
+const getLessonVocabulary = () => {
+    return lingq.getLessonVocabulary().then(result => {
         util.convertUnicodeToChar(result);
         result = JSON.parse(result);
 

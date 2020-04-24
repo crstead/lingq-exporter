@@ -18,25 +18,15 @@ let options = {
 
 const getLessonText = () => {
     options.path = '/api/languages/' + language + '/lessons/' + contentId + '/text/';
-
-    return new Promise((resolve, reject) => {
-        https.get(options, (response) => {
-            let lessonText = '';
-            response.on('data', function (data) {
-                lessonText += data.toString();
-            });
-            response.on('end', function() {
-                resolve(lessonText);
-            });
-        }).on('error', (error) => {
-            reject(error);
-        });
-    });
-}
+    return getPromise(options);
+};
 
 const getLessonVocabulary = () => {
     options.path = '/api/languages/' + language + '/lessons/' + contentId + '/lingqs/';
+    return getPromise(options);
+};
 
+const getPromise = (options) => {
     return new Promise((resolve, reject) => {
         https.get(options, (response) => {
             let lessonText = '';
