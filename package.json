@@ -1,14 +1,14 @@
 {
-  "name": "lingq-sentence-exporter",
+  "name": "lingq-exporter",
   "version": "1.0.0",
-  "description": "",
+  "description": "Utility for exporting LingQ lesson sentences to CSV format",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devgeist/lingq-sentence-exporter.git"
+    "url": "git+https://github.com/devgeist/lingq-exporter.git"
   },
   "keywords": [
     "lingq",
@@ -17,9 +17,9 @@
   "author": "Christopher Button",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/devgeist/lingq-sentence-exporter/issues"
+    "url": "https://github.com/devgeist/lingq-exporter/issues"
   },
-  "homepage": "https://github.com/devgeist/lingq-sentence-exporter#readme",
+  "homepage": "https://github.com/devgeist/lingq-exporter#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "request": "^2.88.2"
