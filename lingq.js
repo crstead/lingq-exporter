@@ -18,15 +18,15 @@ let options = {
 
 const getText = () => {
     options.path = '/api/languages/' + language + '/lessons/' + contentId + '/text/';
-    return getPromise(options);
+    return callAPI(options);
 };
 
 const getVocabulary = () => {
     options.path = '/api/languages/' + language + '/lessons/' + contentId + '/lingqs/';
-    return getPromise(options);
+    return callAPI(options);
 };
 
-const getPromise = (options) => {
+const callAPI = (options) => {
     return new Promise((resolve, reject) => {
         https.get(options, (response) => {
             let text = '';

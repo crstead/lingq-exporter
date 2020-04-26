@@ -27,12 +27,10 @@ const getVocabulary = () => {
     return lingq.getVocabulary().then(result => {
         util.convertUnicodeToChar(result);
         result = JSON.parse(result);
-
-        let vocabulary = new Map();
+        const vocabulary = new Map();
 
         for (key in result) {
-
-            let termKey = result[key]["term"];
+            const termKey = result[key]["term"];
 
             for (hint of result[key]["hints"]) {
                 vocabulary.set(termKey, hint.text);

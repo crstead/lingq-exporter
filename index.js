@@ -22,10 +22,10 @@ const mapLessonData = () => {
     getLessonData().then(values => {
         text = values[0];
         vocabulary = values[1];
-        let dataMap = new Map();
+        const dataMap = new Map();
 
         for (sentence of text) {
-            let items = new Map();
+            const items = new Map();
             for (item of vocabulary) {
                 if (sentence.toString().includes(item[0])) {
                     dataMap.set(sentence, items.set(item[0], item[1]));
