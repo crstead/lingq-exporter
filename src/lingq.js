@@ -1,8 +1,7 @@
 const https = require("https");
-
 const hostname = 'www.lingq.com';
 const port = 443;
-const token = 'Token ***REMOVED***';
+const token = 'Token ...';
 let language = 'sv';
 let contentId = 32892;
 
@@ -34,6 +33,8 @@ const callAPI = (options) => {
                 text += data.toString();
             });
             response.on('end', function() {
+                t = JSON.parse(text);
+                if (t.detail === "Invalid token.") reject("Error: Invalid API token.");
                 resolve(text);
             });
         }).on('error', (error) => {
