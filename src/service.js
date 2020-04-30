@@ -40,7 +40,7 @@ const getLessonData = () => {
     return Promise.all([getText(), getVocabulary()]).then(values => {
         return values;
     }).catch(error => {
-        error !== undefined ? console.log(error) : console.log("Error: Failed to retrieve lesson data");
+        error !== undefined ? console.log(error) : console.log("ERROR: Failed to retrieve lesson data. Exiting.");
         process.exit();
     });
 };
@@ -94,10 +94,9 @@ const writeToCsv = (data) => {
         fieldDelimiter: ';',
     });
 
-    return csvWriter.writeRecords(arr)
-    .then(() => {
+    return csvWriter.writeRecords(arr).then(() => {
         console.log(`Successfully wrote CSV file to ${filepath}`);
-    });
+    }).catch(error => {console.log(error);});
 }
 
 exports.getText = getText;

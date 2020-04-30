@@ -29,8 +29,12 @@ const callApi = (options) => {
                 text += data.toString();
             });
             response.on('end', function() {
-                t = JSON.parse(text);
-                if (t.detail === "Invalid token.") reject("Error: Invalid Api token.");
+                try {
+                    t = JSON.parse(text);
+                    if (t.detail === "Invalid token.") reject("ERROR: Invalid Api token. Exiting.");
+                } catch (error) {
+                    reject("ERROR: Failed to parse API response. Exiting.");
+                }
                 resolve(text);
             });
         }).on('error', (error) => {

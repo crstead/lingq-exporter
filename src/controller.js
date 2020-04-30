@@ -2,7 +2,7 @@ const service = require("./service");
 
 const go = () => {
     service.getMappedLessonData().then(result => {
-        service.writeToCSV(result);
+        service.writeToCsv(result);
     });
 }
 
