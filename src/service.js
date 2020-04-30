@@ -64,7 +64,7 @@ const getMappedLessonData = () => {
     });
 };
 
-const writeToCSV = (data) => {
+const writeToCsv = (data) => {
     const arr = [];
     const iterator = data.keys();
 
@@ -104,4 +104,4 @@ exports.getText = getText;
 exports.getVocabulary = getVocabulary;
 exports.getLessonData = getLessonData;
 exports.getMappedLessonData = getMappedLessonData;
-exports.writeToCSV = writeToCSV;
+exports.writeToCsv = writeToCsv;
