@@ -3,4 +3,12 @@ const service = require("./service");
 let myArgs = process.argv;
 console.log(myArgs);
 
-service.mapLessonData();
+const go = () => {
+    service.getMappedLessonData().then(result => {
+        service.writeToCSV(result).then(result => {
+            console.log(result);
+        });
+    });
+}
+
+go();

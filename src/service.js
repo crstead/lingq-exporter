@@ -1,3 +1,4 @@
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const lingq = require("./lingq");
 const util = require("./util");
 
@@ -24,7 +25,11 @@ const getVocabulary = () => {
             const termKey = result[key]["term"];
 
             for (hint of result[key]["hints"]) {
-                vocabulary.set(termKey, hint.text);
+                if (result[key]["notes"] != null) {
+                    vocabulary.set(termKey, `${hint.text}<br>Note: ${result[key]["notes"]}<br><br>`);
+                } else {
+                    vocabulary.set(termKey, `${hint.text}<br><br>`);
+                }
             }
         }
         return vocabulary;
@@ -40,10 +45,11 @@ const getLessonData = () => {
     });
 };
 
-const mapLessonData = () => {
-    getLessonData().then(values => {
-        text = values[0];
-        vocabulary = values[1];
+const getMappedLessonData = () => {
+    return getLessonData().then(values => {
+        const text = values[0];
+        const vocabulary = values[1];
+
         const dataMap = new Map();
 
         for (sentence of text) {
@@ -54,17 +60,49 @@ const mapLessonData = () => {
                 }
             }
         }
-
-        // tmp
-        for (data of dataMap) {
-            console.log(data);
-        }
-        console.log("Number of sentences in text: " + text.length);
-        console.log("Number of items in map: " + dataMap.size);
+        return dataMap;
     });
 };
+
+const writeToCSV = (data) => {
+    const arr = [];
+    const iterator = data.keys();
+
+    for (key of iterator) {
+
+        value = data.get(key);
+
+        const termIterator = value.keys();
+        let vocabulary = '';
+
+        for (termKey of termIterator) {
+            vocabulary += `${termKey} = ${value.get(termKey)}`;
+        }
+
+        arr.push({sentence: [key], vocabulary: vocabulary});
+    }
+
+    const filepath = './file.csv'
+
+    const csvWriter = createCsvWriter({
+        path: filepath,
+        header: [
+            {id: 'sentence', title: 'SENTENCE'},
+            {id: 'vocabulary', title: 'VOCABULARY'}
+        ],
+        append: true,
+        fieldDelimiter: ';',
+    });
+
+    csvWriter.writeRecords(arr)
+    .then(() => {
+
+        console.log('...Done');
+    });
+}
 
 exports.getText = getText;
 exports.getVocabulary = getVocabulary;
 exports.getLessonData = getLessonData;
-exports.mapLessonData = mapLessonData;
+exports.getMappedLessonData = getMappedLessonData;
+exports.writeToCSV = writeToCSV;

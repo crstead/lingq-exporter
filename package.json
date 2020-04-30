@@ -20,5 +20,7 @@
     "url": "https://github.com/devgeist/lingq-exporter/issues"
   },
   "homepage": "https://github.com/devgeist/lingq-exporter#readme",
-  "dependencies": {}
+  "dependencies": {
+    "csv-writer": "^1.6.0"
+  }
 }
