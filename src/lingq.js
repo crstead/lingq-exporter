@@ -2,8 +2,8 @@ const https = require("https");
 const hostname = 'www.lingq.com';
 const port = 443;
 const token = 'Token ...';
-let language = 'sv';
-let contentId = 32892;
+let language = '';
+let contentId = '';
 
 // 114407 ko
 // 7478 ru

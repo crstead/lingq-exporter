@@ -94,10 +94,9 @@ const writeToCSV = (data) => {
         fieldDelimiter: ';',
     });
 
-    csvWriter.writeRecords(arr)
+    return csvWriter.writeRecords(arr)
     .then(() => {
-
-        console.log('...Done');
+        console.log(`Successfully wrote CSV file to ${filepath}`);
     });
 }
 
