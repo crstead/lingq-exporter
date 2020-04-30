@@ -4,8 +4,9 @@ const util = require("./util");
 const getText = () => {
     return lingq.getText().then(result => {
         result = util.prepareText(result);
+        result = util.formatText(result.text);
 
-        result = result.text.split(/(?<=[^ge][^.\s][^pg][.?!]\)?\s)/g);
+        result = result.split(/(?<=(?<!.\..|\n)[.?!]\)?\s)/);
 
         const text = result.map(sentence => {
             return util.formatText(sentence);

@@ -5,7 +5,7 @@ const convertUnicodeToChar = (t) => {
 };
 
 const formatText = (t) => {
-    return t.replace(/\r?\n|\r/g, '');
+    return t.replace(/<\/?[^>]+(>|$)/g, '').replace(/\r?\n|\r/g, ' ').replace(/\s{2,}/g, ' ').trim();
 };
 
 const prepareText = (t) => {
