@@ -1,9 +1,10 @@
 const https = require("https");
 const hostname = 'www.lingq.com';
 const port = 443;
-const token = 'Token ...';
-let language = '';
-let contentId = '';
+const cliArgs = process.argv.slice(2);
+const token = "Token " + cliArgs[0];
+let language = cliArgs[1];
+let contentId = cliArgs[2];
 
 let options = {
     hostname: hostname,

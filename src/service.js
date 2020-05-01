@@ -82,7 +82,7 @@ const writeToCsv = (data) => {
         arr.push({sentence: [key], vocabulary: vocabulary});
     }
 
-    const filepath = './file.csv'
+    const filepath = process.argv[5];
 
     const csvWriter = createCsvWriter({
         path: filepath,
