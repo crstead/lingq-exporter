@@ -25,7 +25,7 @@ const getVocabulary = () => {
             const termKey = result[key]["term"];
 
             for (hint of result[key]["hints"]) {
-                if (result[key]["notes"] != null) {
+                if (result[key]["notes"] !== null && result[key]["notes"] !== '' ) {
                     vocabulary.set(termKey, `${hint.text} (Note: ${result[key]["notes"]}) | `);
                 } else {
                     vocabulary.set(termKey, `${hint.text} | `);
