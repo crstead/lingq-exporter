@@ -1,4 +1,4 @@
-const service = require("./service");
+const service = require('./service');
 
 const go = () => {
     service.getMappedLessonData().then(result => {

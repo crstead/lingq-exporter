@@ -1,10 +1,23 @@
-const https = require("https");
+const https = require('https');
+const config = require('../config.json');
 const hostname = 'www.lingq.com';
 const port = 443;
-const cliArgs = process.argv.slice(2);
-const token = "Token " + cliArgs[0];
-let language = cliArgs[1];
-let contentId = cliArgs[2];
+let token, language, contentId;
+
+if (process.argv[2] === undefined) {
+    console.log("No content ID provided. Exiting.")
+    process.exit();
+} else {
+    contentId = process.argv[2];
+}
+
+if (config.apiKey === "" || config.language === "") {
+    console.log("No values found in config.json. Exiting.")
+    process.exit();
+} else {
+    token = 'Token ' + config.apiKey;
+    language = config.language;
+}
 
 let options = {
     hostname: hostname,
@@ -32,9 +45,9 @@ const callApi = (options) => {
             response.on('end', function() {
                 try {
                     t = JSON.parse(text);
-                    if (t.detail === "Invalid token.") reject("ERROR: Invalid Api token. Exiting.");
+                    if (t.detail === 'Invalid token.') reject('ERROR: Invalid API token. Exiting.');
                 } catch (error) {
-                    reject("ERROR: Failed to parse API response. Exiting.");
+                    reject('ERROR: Failed to parse API response. Exiting.');
                 }
                 resolve(text);
             });

@@ -1,3 +1,3 @@
-const controller = require("./src/controller");
+const controller = require('./src/controller');
 
 controller.go();

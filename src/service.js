@@ -1,6 +1,7 @@
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-const lingq = require("./lingq");
-const util = require("./util");
+const lingq = require('./lingq');
+const util = require('./util');
+const config = require('../config.json');
 
 const getText = () => {
     return lingq.getText().then(result => {
@@ -22,7 +23,7 @@ const getVocabulary = () => {
         const vocabulary = new Map();
 
         for (key in result) {
-            const termKey = result[key]["term"];
+            const termKey = result[key]['term'];
 
             for (hint of result[key]["hints"]) {
                 if (result[key]["notes"] !== null && result[key]["notes"] !== '' ) {
@@ -40,7 +41,7 @@ const getLessonData = () => {
     return Promise.all([getText(), getVocabulary()]).then(values => {
         return values;
     }).catch(error => {
-        error !== undefined ? console.log(error) : console.log("ERROR: Failed to retrieve lesson data. Exiting.");
+        error !== undefined ? console.log(error.message) : console.log('ERROR: Failed to retrieve lesson data. Exiting.');
         process.exit();
     });
 };
@@ -82,10 +83,10 @@ const writeToCsv = (data) => {
         arr.push({sentence: [key], vocabulary: vocabulary});
     }
 
-    const filepath = process.argv[5];
+    const filePath = config.filePath;
 
     const csvWriter = createCsvWriter({
-        path: filepath,
+        path: filePath,
         header: [
             {id: 'sentence', title: 'SENTENCE'},
             {id: 'vocabulary', title: 'VOCABULARY'}
@@ -95,7 +96,7 @@ const writeToCsv = (data) => {
     });
 
     return csvWriter.writeRecords(arr).then(() => {
-        console.log(`Successfully wrote CSV file to ${filepath}`);
+        console.log(`Successfully wrote CSV file to ${filePath}`);
     }).catch(error => {console.log(error);});
 }
 
