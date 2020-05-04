@@ -1,5 +1,6 @@
 {
     "apiKey": "",
     "language": "",
-    "filePath": ""
+    "filePath": "",
+    "removeSpaces": false
 }

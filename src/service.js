@@ -11,6 +11,7 @@ const getText = () => {
         result = result.split(/(?<=(?<!.\..|\n)[.?!。？！]\)?\s)/);
 
         const text = result.map(sentence => {
+            if (config.removeSpaces) sentence = sentence.replace(/\s/g, '');
             return util.formatText(sentence);
         });
         return text;
