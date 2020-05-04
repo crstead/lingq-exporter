@@ -8,7 +8,7 @@ const getText = () => {
         result = util.prepareText(result);
         result = util.formatText(result.text);
 
-        result = result.split(/(?<=(?<!.\..|\n)[.?!]\)?\s)/);
+        result = result.split(/(?<=(?<!.\..|\n)[.?!。？！]\)?\s)/);
 
         const text = result.map(sentence => {
             return util.formatText(sentence);
