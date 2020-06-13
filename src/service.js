@@ -78,9 +78,10 @@ const writeToCsv = (data) => {
         let vocabulary = '';
 
         for (termKey of termIterator) {
-            vocabulary += `${termKey} = ${value.get(termKey)}`;
+            vocabulary += `${termKey} - ${value.get(termKey)}`;
         }
 
+        vocabulary = vocabulary.replace(/<br>$/g, '');
         arr.push({sentence: [key], vocabulary: vocabulary});
     }
 

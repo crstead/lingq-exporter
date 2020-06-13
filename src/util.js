@@ -11,7 +11,7 @@ const formatText = (t) => {
 const prepareText = (t) => {
     t = convertUnicodeToChar(t);
     return JSON.parse(t);
-}
+};
 
 exports.convertUnicodeToChar = convertUnicodeToChar;
 exports.formatText = formatText;
