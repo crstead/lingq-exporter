@@ -14,7 +14,7 @@ Run `npm install` to install dependencies.
 LingQ Exporter reads in three properties from the `config.json` file in the project root directory:
 
 1. Your API key. See <https://www.lingq.com/en/accounts/apikey/>
-2. The language code, e.g. `en` for English, `ko` for Korean, `sv` for Swedish, etc. This can found in the URL when you are logged into LingQ.
+2. The language code, e.g. `en` for English, `ko` for Korean, `sv` for Swedish, etc. This can be found in the URL when you are logged into LingQ.
 3. The output path, including the filename, e.g. `./output/my_output_file.csv`
 
 The content ID, e.g. `32892` should be passed as a command line argument. This can found in the URL when the lesson is open.
