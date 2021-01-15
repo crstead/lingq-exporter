@@ -1,6 +1,6 @@
-# LingQ Exporter
+# lingq-to-anki
 
-LingQ Exporter is a simple command-line utility for taking lesson data from LingQ - lesson text, saved vocabulary and notes - and generating a CSV file containing each sentence of the text together with its associated vocabulary and notes.
+lingq-to-anki is a simple command-line utility for taking lesson data from LingQ - lesson text, saved vocabulary and notes - and generating a CSV file containing each sentence of the text together with its associated vocabulary and notes.
 
 ## Requirements
 
@@ -11,7 +11,7 @@ Run `npm install` to install dependencies.
 
 ## Usage
 
-LingQ Exporter reads in three properties from the `config.json` file in the project root directory:
+lingq-to-anki reads in three properties from the `config.json` file in the project root directory:
 
 1. Your API key. See <https://www.lingq.com/en/accounts/apikey/>
 2. The language code, e.g. `en` for English, `ko` for Korean, `sv` for Swedish, etc. This can be found in the URL when you are logged into LingQ.
