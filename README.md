@@ -1,6 +1,6 @@
-# lingq-to-anki
+# lingq-exporter
 
-lingq-to-anki is a simple command-line utility for taking lesson data from LingQ - lesson text, saved vocabulary and notes - and generating a CSV file containing each sentence of the text together with its associated vocabulary and notes.
+lingq-exporter is a simple command-line utility for taking lesson data from LingQ - lesson text, saved vocabulary and notes - and generating a CSV file containing each sentence of the text together with its associated vocabulary and notes.
 
 ## Requirements
 
